@@ -29,7 +29,7 @@ public class AgendaController {
 	
 	@RequestMapping
 	public String home() {
-		return "/agenda/Home";
+		return "/agenda/index";
 	}
 	
 }
