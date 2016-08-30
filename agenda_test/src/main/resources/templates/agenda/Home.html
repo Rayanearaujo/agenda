@@ -5,7 +5,22 @@
 	layout:decorator="layout/LayoutPadrao">
 	
 <head>
-	<title>AlgaWorks</title>
+	<link rel='stylesheet' th:href='@{layout/fullcalendar-2.9.1/fullcalendar.css}' />
+		<script th:src='@{layout/javascripts/jquery.min.js}'></script>
+		<script th:src='@{layout/javascripts/moment.min.js}'></script>
+		<script th:src='@{layout/fullcalendar-2.9.1/fullcalendar.js}'></script>
+		<script> 
+			$(document).ready(function() {
+
+					// page is now ready, initialize the calendar...
+
+					$('#calendar').fullCalendar({
+						  // put your options and callbacks here
+					})
+
+			});
+		</script>
+		<title>AlgaWorks</title>
 </head>
 
 <body>
@@ -14,8 +29,11 @@
 	<div class="page-header">
 		<div class="container-fluid">
 			<h1>
-				Agenda de eventos
+				Agenda de eventos - Home
 			</h1>
+			<div id='calendar'>
+			
+			</div>
 		</div>
 	</div>
 
