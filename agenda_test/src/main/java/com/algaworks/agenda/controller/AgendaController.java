@@ -22,6 +22,11 @@ public class AgendaController {
 		return "/agenda/Login";
 	}
 	
+	@RequestMapping("/cadastro")
+	public String cadastro() {
+		return "/agenda/Cadastro";
+	}
+	
 	@RequestMapping
 	public String home() {
 		return "/agenda/Home";
