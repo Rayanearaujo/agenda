@@ -8,7 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-	<title>Spring e Layout Atacama</title>
+	<title>Agenda</title>
 
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/algaworks.min.css}"/>
@@ -29,8 +29,8 @@
 	  <div class="container-fluid">
 
 	    <div class="navbar-header">
-	      <a class="navbar-brand  hidden-xs" href="#">
-	        <img alt="AlgaWorks" th:src="@{/layout/images/logo.png}"/>
+	      <a class="navbar-brand  hidden-xs" th:href="@{/agenda}">
+	        <img alt="AlgaWorks" th:src="@{/layout/images/logo.png}" />
 	      </a>
 
 	      <ul class="nav  navbar-nav">
@@ -43,7 +43,7 @@
 	    <ul class="nav navbar-nav  navbar-right">
 	    
 	      <li>
-	        <a href="#" class="js-search-modal-trigger-show"><i class="fa  fa-search"></i></a>
+	        <a th:href="@{/agenda/consulta}" ><i class="fa  fa-search"></i></a>
 	      </li>
 	      
 	      <li class="dropdown">
@@ -73,13 +73,13 @@
 	          <li role="separator" class="divider"></li>
 	          <li><a href="#">Meu perfil</a></li>
 	          <li><a href="#">Alterar senha</a></li>
-	          <li><a href="#">Pagamentos</a></li>
+	          <li><a th:href="@{/agenda/login}">Sair</a></li>
 	        </ul>
 	      </li>
 	      
-	      <li>
+	      <!--  <li>
 	        <a th:href="@{/agenda/login}"><em class="fa  fa-sign-out"></em></a>
-	      </li> 
+	      </li> -->
 	    </ul>
 
 	  </div>
@@ -111,28 +111,6 @@
           				<span>Consulta evento</span>
           			</a>
 	        		</li>
-	        		
-	        		<li class="aw-menu__item">
-          			<a th:href="@{/403}">
-          				<i class="fa  fa-fw  fa-arrow-circle-o-right"></i>
-          				<span>403</span>
-          			</a>
-	        		</li>
-	        		
-	        		<li class="aw-menu__item">
-          			<a th:href="@{/404}">
-          				<i class="fa  fa-fw  fa-arrow-circle-o-right"></i>
-          				<span>404</span>
-          			</a>
-	        		</li>
-	        		
-	        		<li class="aw-menu__item">
-          			<a th:href="@{/500}">
-          				<i class="fa  fa-fw  fa-arrow-circle-o-right"></i>
-          				<span>500</span>
-          			</a>
-	        		</li>
-	
 	      	</ul>
 	    	</nav>
 		</div>
