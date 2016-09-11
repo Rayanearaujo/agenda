@@ -121,12 +121,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Niver mamae</td>
-						<td>06/10</td>
-						<td>aniverario</td>
+					<tr th:each="evento : ${eventos}">					
+						<td class="aw-table-checkbox"><input type="checkbox"/></td>
+						<td th:text="${evento.titulo}">Niver mamae</td>
+						<td th:text="${evento.data}">06/10</td>
+						<td th:text="${evento.tipo.descricao}">aniverario</td>
 						<td>
-						
+											
 							<div class="btn-group">
 								<button class="btn  btn-default btn-xs">
 									Editar
@@ -138,6 +139,9 @@
 							</div>
 							
 						</td>
+					</tr>
+					<tr th:if="${eventos.empty}">
+						<td colspan="5">Nenhum vinho cadastrado</td>
 					</tr>
 				</tbody>
 			</table>
