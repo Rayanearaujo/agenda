@@ -29,7 +29,7 @@ public class Usuario {
 	private String senha;
 	
 	@NotNull(message = "A Data de Nascimento é obrigatória")	
-	private Date dataNasc;
+	private Date data;
 
 	public Long getIdusuario() {
 		return idusuario;
@@ -63,12 +63,12 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Date getDataNasc() {
-		return dataNasc;
+	public Date getData() {
+		return data;
 	}
 
-	public void setDataNasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setData(Date dataNasc) {
+		this.data = dataNasc;
 	}
 	
 	
