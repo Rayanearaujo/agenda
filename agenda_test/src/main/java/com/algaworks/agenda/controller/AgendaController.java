@@ -1,7 +1,10 @@
 package com.algaworks.agenda.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,11 +28,17 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/novo", method = RequestMethod.POST)
+    public ModelAndView checkPersonInfo(@Valid Evento evento, BindingResult bindingResult) {
+		cadastroEventoService.salvar(evento);
+		return new ModelAndView("redirect:/agenda/novo");
+	}
+	
+	/*@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	public ModelAndView cadastarNovoEvento(Evento evento){
 		cadastroEventoService.salvar(evento);
 		return new ModelAndView("redirect:/agenda/novo");
 		//return new ModelAndView();
-	}
+	}*/
 	
 	@Autowired
 	private Eventos eventos;

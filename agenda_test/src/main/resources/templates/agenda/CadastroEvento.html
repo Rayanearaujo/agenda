@@ -25,32 +25,47 @@
 			<i class="fa  fa-exclamation-circle"></i> Já existe um evento com o nome informado.
 		</div>
 	
-		<form method="POST"  th:object="${evento}" class="form-vertical  js-form-loading">
+		<form method="POST" th:object="${evento}" class="form-vertical  js-form-loading">
 			<div class="row">
 				<div class="col-sm-6 form-group">
-					<label for="titulo">Titulo</label>
-					<input id="titulo" type="text" class="form-control" th:field="*{titulo}"/>
+					<label for="input-evento-titulo">Titulo</label>
+					<input id="input-evento-titulo" type="text" class="form-control" th:field="*{titulo}"/>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="col-sm-6 form-group">
-					<label for="descricao">Descrição</label>
-					<textarea id="descricao" rows="3" class="form-control" th:field="*{descricao}"></textarea>
+					<label for="input-evento-descricao">Descrição</label>
+					<textarea id="input-evento-descricao" rows="3" class="form-control" th:field="*{descricao}"></textarea>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="data">Data</label>
-						<input id="data" type="date" class="form-control" th:field="*{data}"/>
+						<label for="input-evento-data">Data</label>
+						<input id="input-evento-data" type="date" class="form-control" th:field="*{data}"/>
 					</div>
 				</div>
 				
 				<div class="col-sm-3">
 					<div class="form-group">
-						<label for="tipo">Tipo</label>						
+						<label for="input-evento-hora">Hora</label>
+						<input id="input-evento-hora" type="time" class="form-control"/>
+					</div>
+				</div>
+
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-3 form-group">
+					<label for="input-evento-local">Local</label>
+					<input id="input-evento-local" type="text" class="form-control"/>
+				</div>
+			
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="tipo" class="control-label">Tipo</label>						
 						<select id="tipo" class="form-control" name="tipo" th:field="*{tipo}">
 						   <option th:each="tipo : ${tipos}" th:value="${tipo}" th:text="${tipo.descricao}"></option>
 						</select>

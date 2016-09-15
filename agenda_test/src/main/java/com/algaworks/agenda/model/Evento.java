@@ -26,7 +26,7 @@ public class Evento {
 	@NotBlank(message = "Descrição é obrigatório")
 	private String descricao;
 	
-	@NotBlank(message = "Data é obrigatório")
+	@NotNull(message = "Data é obrigatório")
 	private Date data;
 	
 	//private Time hora; -> Qual library
