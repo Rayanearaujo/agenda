@@ -66,14 +66,14 @@
 	          <li>
 	            <div class="aw-logged-user">
 	              <img src="https://api.adorable.io/avatars/80/joaodascouves" 
-	                width="80" height="80" alt="João das Couves" class="aw-logged-user__picture" />
-	              <span class="aw-logged-user__name">João das Couves</span>
+	                width="80" height="80" th:alt="${#authentication.name}" class="aw-logged-user__picture" />
+	              <span class="aw-logged-user__name" th:text="${#authentication.name}"></span>
 	            </div>
 	          </li>
 	          <li role="separator" class="divider"></li>
 	          <li><a href="#">Meu perfil</a></li>
 	          <li><a href="#">Alterar senha</a></li>
-	          <li><a th:href="@{/agenda/login}">Sair</a></li>
+	          <li><a th:href="@{/logout}">Sair</a></li>
 	        </ul>
 	      </li>
 	      
