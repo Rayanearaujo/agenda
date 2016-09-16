@@ -31,7 +31,7 @@ public class Evento {
 	
 	//private Time hora; -> Qual library
 	
-	@NotNull(message = "Nome é obrigatório")
+	@NotNull(message = "Tipo é obrigatório")
 	@Enumerated(EnumType.STRING)
 	private TipoEvento tipo;
 

@@ -26,6 +26,7 @@ public class AgendaController {
 	@Autowired
 	private CadastroEventoService cadastroEventoService;
 	
+	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
 	
 	@RequestMapping("/novo")
@@ -36,11 +37,14 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/novo", method = RequestMethod.POST)
-    public ModelAndView checkPersonInfo(@Valid Evento evento, BindingResult bindingResult) throws ParseException {
+    public ModelAndView cadastrarEvento(@Valid Evento evento, BindingResult bindingResult)  {
 		/*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date parsed = (Date) format.parse(evento.getData()+"");
 		evento.setData(parsed);*/
 		//if(evento != null)
+		if(bindingResult.hasErrors())
+			return novo(evento);
+		
 		cadastroEventoService.salvar(evento);
 		return new ModelAndView("redirect:/agenda/novo");
 	}
@@ -74,8 +78,14 @@ public class AgendaController {
 	
 	@RequestMapping(value = "/cadastro", method = RequestMethod.POST)
 	public ModelAndView cadastrarUsuario(@Valid Usuario usuario, BindingResult bindingResult){
-		if (usuario != null)
+		
+		if(bindingResult.hasErrors())
+			return cadastro(usuario);
+		
+		if (usuario != null){
 			cadastroUsuarioService.salvar(usuario);
+		}
+		
 		return new ModelAndView("redirect:/agenda/login");
 	}
 	

@@ -19,17 +19,17 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idusuario;
 	
-	@NotNull(message = "Nome é obrigatório")
+	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
 	
-	@NotNull(message = "Email é obrigatório")
+	@NotBlank(message = "Email é obrigatório")
 	private String email;
 	
-	@NotNull(message = "Senha é obrigatório")
+	@NotBlank(message = "Senha é obrigatória")
 	private String senha;
 	
-	@NotNull(message = "A Data de Nascimento é obrigatória")	
-	private Date data;
+	@NotNull(message = "Data de Nascimento é obrigatória")	
+	private Date datanascimento;
 
 	public Long getIdusuario() {
 		return idusuario;
@@ -63,12 +63,12 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Date getData() {
-		return data;
+	public Date getDatanascimento() {
+		return datanascimento;
 	}
 
-	public void setData(Date dataNasc) {
-		this.data = dataNasc;
+	public void setDatanascimento(Date dataNasc) {
+		this.datanascimento = dataNasc;
 	}
 	
 	
