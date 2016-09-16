@@ -1,5 +1,9 @@
 package com.algaworks.agenda.controller;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +15,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.algaworks.agenda.model.Evento;
 import com.algaworks.agenda.model.TipoEvento;
+import com.algaworks.agenda.model.Usuario;
 import com.algaworks.agenda.repository.Eventos;
 import com.algaworks.agenda.service.CadastroEventoService;
+import com.algaworks.agenda.service.CadastroUsuarioService;
 
 @Controller
 @RequestMapping("/agenda")
 public class AgendaController {
 	@Autowired
 	private CadastroEventoService cadastroEventoService;
+	
+	private CadastroUsuarioService cadastroUsuarioService;
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo(Evento evento) {
@@ -28,7 +36,11 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/novo", method = RequestMethod.POST)
-    public ModelAndView checkPersonInfo(@Valid Evento evento, BindingResult bindingResult) {
+    public ModelAndView checkPersonInfo(@Valid Evento evento, BindingResult bindingResult) throws ParseException {
+		/*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date parsed = (Date) format.parse(evento.getData()+"");
+		evento.setData(parsed);*/
+		//if(evento != null)
 		cadastroEventoService.salvar(evento);
 		return new ModelAndView("redirect:/agenda/novo");
 	}
@@ -56,8 +68,15 @@ public class AgendaController {
 	}
 	
 	@RequestMapping("/cadastro")
-	public String cadastro() {
-		return "/agenda/Cadastro";
+	public ModelAndView cadastro(Usuario usuario) {
+		return new ModelAndView("/agenda/Cadastro");
+	}
+	
+	@RequestMapping(value = "/cadastro", method = RequestMethod.POST)
+	public ModelAndView cadastrarUsuario(@Valid Usuario usuario, BindingResult bindingResult){
+		if (usuario != null)
+			cadastroUsuarioService.salvar(usuario);
+		return new ModelAndView("redirect:/agenda/login");
 	}
 	
 	@RequestMapping

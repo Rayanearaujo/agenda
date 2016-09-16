@@ -25,32 +25,32 @@
 			<i class="fa  fa-exclamation-circle"></i> Já existe um usuario com o email informado.
 		</div>
 	
-		<form method="get" class="form-vertical  js-form-loading">
+		<form method="POST" th:object="${usuario}" class="form-vertical  js-form-loading">
 			
 			<div class="form-group">
-				<label for="input-evento-descricao">Nome</label>
-				<input id="input-evento-titulo" type="text" class="form-control"/>
+				<label for="nome">Nome</label>
+				<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
 			</div>
 			
 			<div class="form-group">
-				<label for="input-usuario-email">Email</label>
-				<input id="input-evento-titulo" type="text" class="form-control"/>
+				<label for="email">Email</label>
+				<input id="email" type="text" class="form-control" th:field="*{email}"/>
 			</div>
 	
 			<div class="form-group">
-				<label for="input-evento-descricao">Senha</label>
-				<input id="input-evento-titulo" type="password" class="form-control"/>
+				<label for="senha">Senha</label>
+				<input id="senha" type="password" class="form-control" th:field="*{senha}"/>
 			</div>
 			
 			<div class="form-group">
-				<label for="input-evento-descricao">Data de Nascimento</label>
-				<input id="input-evento-titulo" type="date" class="form-control"/>
+				<label for="data">Data de Nascimento</label>
+				<input id="data" type="text" class="form-control" th:field="*{data}"/>
 			</div>
 			
 			
 			
 			<div class="form-group">
-				<a th:href="@{/agenda/login}" class="btn  btn-default">Cadastrar</a>
+				<button class="btn  btn-primary" type="submit">Cadastrar</button>
 				<a th:href="@{/agenda/login}" class="btn  btn-default">Cancelar</a>
 			</div>
 	
