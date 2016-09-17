@@ -13,8 +13,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication()
-			.withUser("joao").password("joao").roles("").and()
-			.withUser("maria").password("maria").roles("");
+			.withUser("joao").password("joao").roles("CADASTRAR_EVENTO", "PESQUISAR_EVENTO").and()
+			.withUser("maria").password("maria").roles("CADASTRAR_EVENTO", "PESQUISAR_EVENTO" );
 	}
 
 	@Override
@@ -26,9 +26,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()/*
-				.antMatchers("/vinhos/novo").hasRole("CADASTRAR_VINHO")
-				.antMatchers("/vinhos/**").hasRole("LISTAR_VINHO") */
+			.csrf().disable()
+			.authorizeRequests()
+				.antMatchers("/agenda/novo").hasRole("CADASTRAR_EVENTO")
+				.antMatchers("/agenda/consulta").hasRole("PESQUISAR_EVENTO")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
