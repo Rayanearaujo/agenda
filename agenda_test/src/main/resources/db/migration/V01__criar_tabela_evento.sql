@@ -3,6 +3,8 @@ CREATE TABLE evento(
 	titulo VARCHAR(30) NOT NULL,
 	descricao VARCHAR(100) NOT NULL,
 	data DATE NOT NULL,
+	localevento VARCHAR(100),
+	horaevento TIME,
 	tipo VARCHAR(20) NOT NULL
 
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;

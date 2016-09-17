@@ -36,7 +36,7 @@
 			<i class="fa  fa-check"></i> Os 8 eventos selecionados foram excluídos com sucesso!
 		</div>-->
 
-		<form method="get" class="form-vertical  js-form-loading">
+		<form method="POST" class="form-vertical  js-form-loading">
 			<div class="form-group">
 				<label for="input-evento-titulo">Titulo</label>
 				<input id="input-evento-titulo" type="text" class="form-control"/>
@@ -134,9 +134,9 @@
 									Editar
 								</button>
 								
-								<button class="btn  btn-default btn-xs">
+								<a th:href="@{/agenda/excluir}" class="btn  btn-default btn-xs">
 									Excluir
-								</button>
+								</a>
 							</div>
 							
 						</td>

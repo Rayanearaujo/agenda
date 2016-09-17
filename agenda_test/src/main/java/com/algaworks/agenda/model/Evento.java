@@ -1,5 +1,6 @@
 package com.algaworks.agenda.model;
 
+import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -29,8 +30,28 @@ public class Evento {
 	@NotNull(message = "Data é obrigatório")
 	private Date data;
 	
+	private String localevento;
+	
+	private Time horaevento;
+	
 	//private Time hora; -> Qual library
 	
+	public String getLocalevento() {
+		return localevento;
+	}
+
+	public void setLocalevento(String localevento) {
+		this.localevento = localevento;
+	}
+
+	public Time getHoraevento() {
+		return horaevento;
+	}
+
+	public void setHoraevento(Time horaevento) {
+		this.horaevento = horaevento;
+	}
+
 	@NotNull(message = "Tipo é obrigatório")
 	@Enumerated(EnumType.STRING)
 	private TipoEvento tipo;

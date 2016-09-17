@@ -19,6 +19,7 @@ import com.algaworks.agenda.model.Usuario;
 import com.algaworks.agenda.repository.Eventos;
 import com.algaworks.agenda.service.CadastroEventoService;
 import com.algaworks.agenda.service.CadastroUsuarioService;
+import com.algaworks.agenda.service.ExcluirEventoService;
 
 @Controller
 @RequestMapping("/agenda")
@@ -28,6 +29,9 @@ public class AgendaController {
 	
 	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
+	
+	//@Autowired
+	private ExcluirEventoService excluirEventoService;
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo(Evento evento) {
@@ -42,6 +46,11 @@ public class AgendaController {
 		Date parsed = (Date) format.parse(evento.getData()+"");
 		evento.setData(parsed);*/
 		//if(evento != null)
+		System.out.println("***************** cadastrar evento. Título: "+ evento.getTitulo() + "***************** \n");
+		System.out.println("***************** cadastrar evento. Data: "+ evento.getData() + "***************** \n");
+		System.out.println("***************** cadastrar evento. Hora: "+ evento.getHoraevento() + "*****************");
+		
+		
 		if(bindingResult.hasErrors())
 			return novo(evento);
 		
@@ -87,6 +96,17 @@ public class AgendaController {
 		}
 		
 		return new ModelAndView("redirect:/agenda/login");
+	}
+
+	@RequestMapping("/excluir")
+	public ModelAndView excluir(Evento evento) {
+		System.out.println("excluir evento "+ evento.getTitulo() + "*****************");
+		
+		if(evento != null)
+			excluirEventoService.excluir(evento);
+	
+		return new ModelAndView ("redirect:/agenda/consulta");
+		
 	}
 	
 	@RequestMapping
