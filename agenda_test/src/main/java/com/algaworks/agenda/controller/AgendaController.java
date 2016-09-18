@@ -80,21 +80,44 @@ public class AgendaController {
 	
 	@RequestMapping(value = "/consulta", method = RequestMethod.POST)
 	public ModelAndView fazerPesquisa(@Valid Evento evento, BindingResult bindingResult) {
+		
 		ModelAndView mv = new ModelAndView("/agenda/PesquisaEventos");
-		
-		System.out.println("*********** consultar evento. Título: "+ evento.getTitulo() + "*********** \n");
-		
-		
 		List<Evento> todosEventos = eventos.findAll();
 		List<Evento> eventosResultado = new ArrayList<Evento>();
 		
 		for(int i = 0; i < todosEventos.size(); i++){
-			if(todosEventos.get(i).getTitulo().equals(evento.getTitulo())){
-				System.out.println("*********** consultar evento. Same title: " + todosEventos.get(i).getTitulo() +" ***********");
-				eventosResultado.add(todosEventos.get(i));
+			
+			if((evento.getTitulo() != null) && (!evento.getTitulo().equals(""))){
+				if((evento.getTipo() != null) && (!evento.getTipo().getDescricao().equals(""))){
+					System.out.println("*********** consultar por titulo e tipo ***********");
+					if((todosEventos.get(i).getTitulo().equals(evento.getTitulo()))
+							&&(todosEventos.get(i).getTipo().getDescricao()
+									.equals(evento.getTipo().getDescricao()))){
+						eventosResultado.add(todosEventos.get(i));
+					}
+				}
+				else{
+					System.out.println("*********** consultar por titulo ***********");
+					if(todosEventos.get(i).getTitulo().equals(evento.getTitulo())){
+						System.out.println("*********** consultar evento. Same title: " + todosEventos.get(i).getTitulo() +" ***********");
+						eventosResultado.add(todosEventos.get(i));
+					}
+				}
+			}
+			else{
+				if((evento.getTipo() != null) && (!evento.getTipo().getDescricao().equals(""))){	
+					if(todosEventos.get(i).getTipo().getDescricao().equals(evento.getTipo().getDescricao())){
+						System.out.println("*********** consultar por tipo ***********");
+						eventosResultado.add(todosEventos.get(i));
+						
+					}
+				}
+				else{
+					System.out.println("*********** não consultar ***********");
+					return new ModelAndView ("redirect:/agenda/consulta");
+				}
 			}
 		}
-		
 		
 		mv.addObject("eventos", eventosResultado);
 		return mv;
