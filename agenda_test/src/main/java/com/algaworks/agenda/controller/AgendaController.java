@@ -84,37 +84,88 @@ public class AgendaController {
 		ModelAndView mv = new ModelAndView("/agenda/PesquisaEventos");
 		List<Evento> todosEventos = eventos.findAll();
 		List<Evento> eventosResultado = new ArrayList<Evento>();
+		SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
 		
 		for(int i = 0; i < todosEventos.size(); i++){
 			
 			if((evento.getTitulo() != null) && (!evento.getTitulo().equals(""))){
 				if((evento.getTipo() != null) && (!evento.getTipo().getDescricao().equals(""))){
-					System.out.println("*********** consultar por titulo e tipo ***********");
-					if((todosEventos.get(i).getTitulo().equals(evento.getTitulo()))
-							&&(todosEventos.get(i).getTipo().getDescricao()
-									.equals(evento.getTipo().getDescricao()))){
-						eventosResultado.add(todosEventos.get(i));
+					if(evento.getData() != null){
+						//System.out.println("*********** consultar por titulo, tipo e data ***********");						
+						String eventDataFormatted = sdf.format(evento.getData());
+						String todosEventosDataFormatted = sdf.format(todosEventos.get(i).getData());
+						
+						if((todosEventos.get(i).getTitulo().equals(evento.getTitulo()))
+								&&(todosEventos.get(i).getTipo().getDescricao()
+										.equals(evento.getTipo().getDescricao()))
+								&& (eventDataFormatted.equals(todosEventosDataFormatted))){
+							eventosResultado.add(todosEventos.get(i));
+						}
+					}
+					else{
+						//System.out.println("*********** consultar por titulo e tipo ***********");
+						if((todosEventos.get(i).getTitulo().equals(evento.getTitulo()))
+								&&(todosEventos.get(i).getTipo().getDescricao()
+										.equals(evento.getTipo().getDescricao()))){
+							eventosResultado.add(todosEventos.get(i));
+						}
 					}
 				}
 				else{
-					System.out.println("*********** consultar por titulo ***********");
-					if(todosEventos.get(i).getTitulo().equals(evento.getTitulo())){
-						System.out.println("*********** consultar evento. Same title: " + todosEventos.get(i).getTitulo() +" ***********");
-						eventosResultado.add(todosEventos.get(i));
+					if(evento.getData() != null){
+						//System.out.println("*********** consultar por titulo e data ***********");
+						String eventDataFormatted = sdf.format(evento.getData());
+						String todosEventosDataFormatted = sdf.format(todosEventos.get(i).getData());
+						
+						if((todosEventos.get(i).getTitulo().equals(evento.getTitulo()))
+								&& (eventDataFormatted.equals(todosEventosDataFormatted))){
+							eventosResultado.add(todosEventos.get(i));
+						}
+					}
+					else{
+						//System.out.println("*********** consultar por titulo ***********");
+						if(todosEventos.get(i).getTitulo().equals(evento.getTitulo())){
+							eventosResultado.add(todosEventos.get(i));
+						}
 					}
 				}
 			}
 			else{
-				if((evento.getTipo() != null) && (!evento.getTipo().getDescricao().equals(""))){	
-					if(todosEventos.get(i).getTipo().getDescricao().equals(evento.getTipo().getDescricao())){
-						System.out.println("*********** consultar por tipo ***********");
-						eventosResultado.add(todosEventos.get(i));
+				if((evento.getTipo() != null) && (!evento.getTipo().getDescricao().equals(""))){
+					if(evento.getData() != null){
+						String eventDataFormatted = sdf.format(evento.getData());
+						String todosEventosDataFormatted = sdf.format(todosEventos.get(i).getData());
 						
+						if((todosEventos.get(i).getTipo().getDescricao().equals(evento.getTipo().getDescricao()))
+								&& (eventDataFormatted.equals(todosEventosDataFormatted))){
+							//System.out.println("*********** consultar por tipo e data***********");
+							eventosResultado.add(todosEventos.get(i));	
+						}
+					}
+					else{
+						if(todosEventos.get(i).getTipo().getDescricao().equals(evento.getTipo().getDescricao())){
+							//System.out.println("*********** consultar por tipo ***********");
+							eventosResultado.add(todosEventos.get(i));
+							
+						}
 					}
 				}
 				else{
-					System.out.println("*********** não consultar ***********");
-					return new ModelAndView ("redirect:/agenda/consulta");
+					if(evento.getData() != null){
+						
+						//System.out.println("*********** consultar por data ***********");
+						
+						String eventDataFormatted = sdf.format(evento.getData());
+						String todosEventosDataFormatted = sdf.format(todosEventos.get(i).getData());
+						
+						if(eventDataFormatted.equals(todosEventosDataFormatted)){
+							eventosResultado.add(todosEventos.get(i));
+						}
+					}
+					else{
+						//System.out.println("*********** não consultar ***********");
+						return new ModelAndView ("redirect:/agenda/consulta");
+					}
 				}
 			}
 		}
