@@ -36,19 +36,19 @@
 			<i class="fa  fa-check"></i> Os 8 eventos selecionados foram excluídos com sucesso!
 		</div>-->
 
-		<form method="POST" class="form-vertical  js-form-loading">
+		<form method="POST" th:object="${evento}" class="form-vertical  js-form-loading">
 			<div class="form-group">
-				<label for="input-evento-titulo">Titulo</label>
-				<input id="input-evento-titulo" type="text" class="form-control"/>
+				<label for="titulo">Titulo</label>
+				<input id="titulo" type="text" class="form-control" th:field="*{titulo}"/>
 			</div>
 	
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
-						<label for="input-evento-data">Data</label>
+						<label for="data">Data</label>
 						
 						<div class="form-inline">
-							<input type="date" class="form-control  aw-form-control-inline-sm"/>
+							<input type="date" class="form-control  aw-form-control-inline-sm" th:field="*{data}"/>
 							<label class="aw-form-label-between">até</label>
 							<input type="date" class="form-control  aw-form-control-inline-sm"/>
 						</div>
@@ -57,16 +57,16 @@
 				
 				<div class="col-sm-6">
 					<div class="form-group">
-						<label for="input-evento-tipo">Tipo</label>						
-						<select id="tipo" name="tipo">
-						   <option value="compromisso">Compromisso</option>
-						   <option value="reuniao">Reunião</option>
-						   <option value="entrevista">Entrevista</option>
-						   <option value="festa">Festa</option>
-						   <option value="jantar">Jantar</option>
-						   <option value="lembrete">Lembrete</option>
-						   <option value="aniversario">Aniversário</option>
-						   <option value="conferencia">Conferência</option>
+						<label for="tipo">Tipo</label>						
+						<select id="tipo" name="tipo" th:field="*{tipo}">
+						   <option value="COMPROMISSO">Compromisso</option>
+						   <option value="REUNIAO">Reunião</option>
+						   <option value="ENTREVISTA">Entrevista</option>
+						   <option value="FESTA">Festa</option>
+						   <option value="JANTAR">Jantar</option>
+						   <option value="LEMBRETE">Lembrete</option>
+						   <option value="ANIVERSARIO">Aniversário</option>
+						   <option value="CONFERENCIA">Conferência</option>
 						</select>
 					</div>
 				</div>
@@ -142,7 +142,7 @@
 						</td>
 					</tr>
 					<tr th:if="${eventos.empty}">
-						<td colspan="5">Nenhum evento cadastrado</td>
+						<td colspan="5">Nenhum evento encontrado</td>
 					</tr>
 				</tbody>
 			</table>
@@ -160,7 +160,7 @@
 			</div>
 			<div class="col-xs-12  col-md-4  aw-text-xs-center  aw-text-md-right">
 				<span class="aw-pagination-info">
-					102 produtos encontrados
+					102 eventos encontrados
 				</span>
 			</div>
 	

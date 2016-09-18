@@ -3,6 +3,8 @@ package com.algaworks.agenda.controller;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -44,15 +46,15 @@ public class AgendaController {
     public ModelAndView cadastrarEvento(@Valid Evento evento, BindingResult bindingResult)  {
 		/*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date parsed = (Date) format.parse(evento.getData()+"");
-		evento.setData(parsed);*/
-		//if(evento != null)
+		evento.setData(parsed);
+		if(evento != null)
 		System.out.println("***************** cadastrar evento. Título: "+ evento.getTitulo() + "***************** \n");
 		System.out.println("***************** cadastrar evento. Data: "+ evento.getData() + "***************** \n");
-		System.out.println("***************** cadastrar evento. Hora: "+ evento.getHoraevento() + "*****************");
+		System.out.println("***************** cadastrar evento. Hora: "+ evento.getHoraevento() + "*****************");*/
 		
 		
-		if(bindingResult.hasErrors())
-			return novo(evento);
+		/*if(bindingResult.hasErrors())
+			return novo(evento);*/
 		
 		cadastroEventoService.salvar(evento);
 		return new ModelAndView("redirect:/agenda/novo");
@@ -68,12 +70,36 @@ public class AgendaController {
 	@Autowired
 	private Eventos eventos;
 	
+	
 	@RequestMapping("/consulta")
-	public ModelAndView pesquisa() {		
+	public ModelAndView pesquisa(Evento evento) {		
 		ModelAndView mv = new ModelAndView("/agenda/PesquisaEventos");
 		mv.addObject("eventos", eventos.findAll());
 		return mv;
 	}
+	
+	@RequestMapping(value = "/consulta", method = RequestMethod.POST)
+	public ModelAndView fazerPesquisa(@Valid Evento evento, BindingResult bindingResult) {
+		ModelAndView mv = new ModelAndView("/agenda/PesquisaEventos");
+		
+		System.out.println("*********** consultar evento. Título: "+ evento.getTitulo() + "*********** \n");
+		
+		
+		List<Evento> todosEventos = eventos.findAll();
+		List<Evento> eventosResultado = new ArrayList<Evento>();
+		
+		for(int i = 0; i < todosEventos.size(); i++){
+			if(todosEventos.get(i).getTitulo().equals(evento.getTitulo())){
+				System.out.println("*********** consultar evento. Same title: " + todosEventos.get(i).getTitulo() +" ***********");
+				eventosResultado.add(todosEventos.get(i));
+			}
+		}
+		
+		
+		mv.addObject("eventos", eventosResultado);
+		return mv;
+	}
+	
 		
 	@RequestMapping("/login")
 	public String login() {
