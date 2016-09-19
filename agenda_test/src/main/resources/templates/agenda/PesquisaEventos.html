@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-xs-10">
 					<h1>
-						Pesquisa de Eventos
+						Meus Eventos
 					</h1>
 				</div>
 			
@@ -140,7 +140,7 @@
 										Editar
 									</button>
 									
-									<a th:href="@{/agenda/excluir}" class="btn  btn-default btn-xs" type="submit">
+									<a th:href="@{/agenda/excluir/{codigo}(codigo=${evento.idevento})}"  class="btn  btn-default btn-xs" type="submit">
 										Excluir
 									</a>
 								</div>

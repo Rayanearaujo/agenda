@@ -34,7 +34,7 @@ public class AgendaController {
 	@Autowired
 	private CadastroUsuarioService cadastroUsuarioService;
 	
-	//@Autowired
+	@Autowired
 	private ExcluirEventoService excluirEventoService;
 	
 	@RequestMapping("/novo")
@@ -183,6 +183,14 @@ public class AgendaController {
 		Evento evento = eventos.findOne(codigo);
 		mv.addObject("evento", evento);
 		return mv;
+	}
+	
+	@RequestMapping(value = "/excluir/{codigo}")
+	public ModelAndView deletarEvento(@PathVariable Long codigo){
+		
+		excluirEventoService.excluir(codigo);
+		
+		return new ModelAndView("redirect:/agenda/consulta");
 	}
 		
 	@RequestMapping("/login")

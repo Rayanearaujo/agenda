@@ -20,21 +20,23 @@
 	<div class="container-fluid">
 		<div class="rol">
 			<div class="col-sm-15">
-				<ul class="list-group">
-					<li class="list-group-item" th:text="|Descrição: ${evento.descricao}|"></li>
-					<li id="data" class="list-group-item" th:text="|Data: ${evento.data}|"></li>
-					<li class="list-group-item" th:text="|Hora: ${evento.horaevento}|"></li>
-					<li class="list-group-item" th:text="|Local: ${evento.localevento}|"></li>
-					<li class="list-group-item" th:text="|Tipo: ${evento.tipo.descricao}|"></li>
-				</ul>
-				<div class="btn-group col-sm-9">
-					<button class="btn  btn-default btn-xs" >
-						Editar
-					</button>									
-					<a th:href="@{/agenda/excluir}" class="btn  btn-default btn-xs" type="submit">
-						Excluir
-					</a>
-				</div>
+				<form method="POST" class="form-vertical  js-form-loading">
+					<ul class="list-group">
+						<li class="list-group-item" th:text="|Descrição: ${evento.descricao}|"></li>
+						<li id="data" class="list-group-item" th:text="|Data: ${evento.data}|"></li>
+						<li class="list-group-item" th:text="|Hora: ${evento.horaevento}|"></li>
+						<li class="list-group-item" th:text="|Local: ${evento.localevento}|"></li>
+						<li class="list-group-item" th:text="|Tipo: ${evento.tipo.descricao}|"></li>
+					</ul>
+					<div class="btn-group col-sm-9">
+						<button class="btn  btn-default btn-xs">
+							Editar
+						</button>									
+						<a th:href="@{/agenda/excluir/{codigo}(codigo=${evento.idevento})}" class="btn  btn-default btn-xs" type="submit">
+							Excluir
+						</a>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
