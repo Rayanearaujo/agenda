@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/LayoutSimples">
+	
+<head>
+	<title th:text="${evento.titulo}"></title>
+</head>
+
+<body>
+<section layout:fragment="conteudo">
+
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1 th:text="${evento.titulo}"></h1>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<div class="rol">
+			<div class="col-sm-15">
+				<ul class="list-group">
+					<li class="list-group-item" th:text="|Descrição: ${evento.descricao}|"></li>
+					<li id="data" class="list-group-item" th:text="|Data: ${evento.data}|"></li>
+					<li class="list-group-item" th:text="|Hora: ${evento.horaevento}|"></li>
+					<li class="list-group-item" th:text="|Local: ${evento.localevento}|"></li>
+					<li class="list-group-item" th:text="|Tipo: ${evento.tipo.descricao}|"></li>
+				</ul>
+				<div class="btn-group col-sm-9">
+					<button class="btn  btn-default btn-xs" >
+						Editar
+					</button>									
+					<a th:href="@{/agenda/excluir}" class="btn  btn-default btn-xs" type="submit">
+						Excluir
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>

@@ -127,7 +127,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="evento : ${eventos}">					
-							<td><a href="#" th:text="${evento.titulo}" th:field="*{titulo}"></a></td>
+							<td><a th:href="@{/agenda/{codigo}(codigo=${evento.idevento})}" th:text="${evento.titulo}" th:field="*{titulo}"></a></td>
 							<td th:text="${evento.descricao}" th:field="*{descricao}"></td>
 							<td th:text="${evento.data}" ></td>
 							<td th:text="${evento.horaevento}" ></td>
