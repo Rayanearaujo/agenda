@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.agenda.model.Evento;
 import com.algaworks.agenda.model.TipoEvento;
@@ -43,7 +44,7 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/novo", method = RequestMethod.POST)
-    public ModelAndView cadastrarEvento(@Valid Evento evento, BindingResult bindingResult)  {
+    public ModelAndView cadastrarEvento(@Valid Evento evento, BindingResult bindingResult, RedirectAttributes attributes)  {
 		/*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date parsed = (Date) format.parse(evento.getData()+"");
 		evento.setData(parsed);
@@ -53,10 +54,11 @@ public class AgendaController {
 		System.out.println("***************** cadastrar evento. Hora: "+ evento.getHoraevento() + "*****************");*/
 		
 		
-		/*if(bindingResult.hasErrors())
-			return novo(evento);*/
+		if(bindingResult.hasErrors())
+			return novo(evento);
 		
 		cadastroEventoService.salvar(evento);
+		attributes.addFlashAttribute("mensagem", "Evento cadastrado com sucesso!");
 		return new ModelAndView("redirect:/agenda/novo");
 	}
 	
@@ -199,11 +201,11 @@ public class AgendaController {
 	}
 
 	@RequestMapping("/excluir")
-	public ModelAndView excluir(Evento evento) {
-		System.out.println("excluir evento "+ evento.getTitulo() + "*****************");
+	public ModelAndView excluir(Evento eventoselected) {
+		System.out.println("******** excluir evento" + eventoselected.getDescricao() + "********");
 		
-		if(evento != null)
-			excluirEventoService.excluir(evento);
+		//if(evento != null)
+			//excluirEventoService.excluir(evento);
 	
 		return new ModelAndView ("redirect:/agenda/consulta");
 		
