@@ -228,8 +228,10 @@ public class AgendaController {
 	}
 	
 	@RequestMapping
-	public String home() {
-		return "/agenda/index";
+	public ModelAndView home() {
+		ModelAndView mv = new ModelAndView("/agenda/index");
+		mv.addObject("eventos", eventos.findAll());
+		return mv;
 	}
 	
 }
