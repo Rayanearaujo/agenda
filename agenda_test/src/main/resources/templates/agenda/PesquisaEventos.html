@@ -117,25 +117,25 @@
 					<thead class="aw-table-header-solid">
 						<tr>
 							<th>Titulo</th>
-							<th>Descrição</th>
 							<th>Data</th>
+							<!-- <th>Data</th>
 							<th>Hora</th>
 							<th>Local</th>
 							<th>Tipo</th>
-							<th>Ações</th>
+							<th>Ações</th>-->
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="evento : ${eventos}">					
 							<td><a th:href="@{/agenda/{codigo}(codigo=${evento.idevento})}" th:text="${evento.titulo}" th:field="*{titulo}"></a></td>
-							<td th:text="${evento.descricao}" th:field="*{descricao}"></td>
-							<td th:text="${evento.data}" ></td>
+							<td th:text="${evento.data}" th:field="*{data}"></td>
+							<!-- <td th:text="${evento.data}" ></td>
 							<td th:text="${evento.horaevento}" ></td>
 							<td th:text="${evento.localevento}" ></td>
-							<td th:text="${evento.tipo.descricao}" ></td>
-							<td>
+							<td th:text="${evento.tipo.descricao}" ></td>-->
+							<!-- <td>
 												
-								<div class="btn-group">
+								 <div class="btn-group">
 									<button class="btn  btn-default btn-xs" >
 										Editar
 									</button>
@@ -145,7 +145,7 @@
 									</a>
 								</div>
 								
-							</td>
+							</td>-->
 						</tr>
 						<tr th:if="${eventos.empty}">
 							<td colspan="5">Nenhum evento encontrado</td>
