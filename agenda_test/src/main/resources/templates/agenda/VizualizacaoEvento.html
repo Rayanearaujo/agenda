@@ -23,10 +23,11 @@
 				<form method="POST" class="form-vertical  js-form-loading">
 					<ul class="list-group">
 						<li class="list-group-item" th:text="|Descrição: ${evento.descricao}|"></li>
-						<li id="data" class="list-group-item" th:text="|Data: ${evento.data}|"></li>
+						<li id="data" class="list-group-item" th:text="|Data: ${evento.data.toLocaleString()}|"></li>
 						<li class="list-group-item" th:text="|Hora: ${evento.horaevento}|"></li>
 						<li class="list-group-item" th:text="|Local: ${evento.localevento}|"></li>
 						<li class="list-group-item" th:text="|Tipo: ${evento.tipo.descricao}|"></li>
+						<!-- <input class="list-group-item" th:placeholder="|Tipo: ${evento.tipo.descricao}|"></input>-->
 					</ul>
 					<div class="btn-group col-sm-9">
 						<button class="btn  btn-default btn-xs">

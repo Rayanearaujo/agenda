@@ -13,7 +13,7 @@
 /* Calendar Wrapper */
 .ui-datepicker {
 	display: none;
-	width: 95%;
+	width: 100%;
 	padding: 35px;
 	cursor: default;
 
@@ -21,7 +21,7 @@
 	font-family: Tahoma;
 	font-size: 12px;
 
-	background: #141517;	
+	background: #2e3436;	
 
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -118,6 +118,7 @@
 	padding-top: 15px;
 	padding-bottom: 10px;
 	
+	
 	text-align: center;
 	font-weight: normal;
 	color: #a8a8a8;
@@ -149,3 +150,8 @@
 
 /* Other Months Days*/
 .ui-datepicker-other-month .ui-state-default { color: #565656; }
+
+#calendar{
+	float: left;
+	margin-left: 30px;
+}
