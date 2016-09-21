@@ -1,46 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout/LayoutPadrao">
-
-<head>
-
-	<meta charset="utf-8" />
-
-	<link rel="stylesheet" th:href="@{/layout/stylesheets/calendar.css}" media="screen"/>
-
-	<style type="text/css">
-		.footer{margin-top:100px;text-align:center;color:#666;font:bold 14px Arial}
-		.footer a{color:#999;text-decoration:none}#wrapper{padding: 50px 0 0 325px;}
-		#calendar{margin-left:25px; width: 370px;}
-		.event a {
-		    background: #75507b !important;
-		    background-image :none !important;
-		}
-	</style>
-	<meta name="robots" content="noindex,follow" />
-</head>
-
-<body>
-
-
-<section layout:fragment="conteudo">
-
-	<div class="page-header">
-		<div class="container-fluid">
-			<h1>
-				Agenda
-			</h1>
-		</div>
-	</div>
-	
-	<div id="calendar"></div>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script th:src="@{/layout/javascripts/jquery-ui-datepicker.min.js}"></script>
-	<script th:inline="javascript">
-		//<![CDATA[
+//<![CDATA[
 		           
 		var eventos = [[${eventos}]];
 	        
@@ -99,21 +57,3 @@
 			       
 	   		});
 		//]]> 
-	</script>
-	
-
-	<div class="table-responsive col-sm-6">
-		<table id="tabela-eventos" class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
-			<thead id="tabela" class="aw-table-header-solid">
-			</thead>
-			<tbody th:each="evento : ${eventos}" id="teste">					
-			</tbody>
-		</table>
-	</div>
-</section>
-
-
-
-</body>
-
-</html>
