@@ -17,7 +17,28 @@
 		</div>
 	</div>
 	
-	<div class="container-fluid">
+	<script th:inline="javascript">
+		/*function showStuff(id, btn) {
+		    document.getElementById(id).style.display = 'block';
+		    hide the lorem ipsum text
+		    document.getElementById(text).style.display = 'none';
+		    hide the link
+		    btn.style.display = 'none';
+		}*/
+		
+		function enableEdicao(idshow, idhide) {
+		    document.getElementById(idshow).style.display = 'block';
+		    document.getElementById(idhide).style.display = 'none';
+		}
+	</script>
+	
+	<!-- <td class="post">
+		<a href="#" onclick="showStuff('answer1', this); return false;">Edit</a>
+		<label id="answer1" style="display: none;"> apareceu </label>
+	</td>-->
+	
+	<!-- Form de exibição do evento -->
+	<div id="formexibicao" class="container-fluid">
 		<div class="rol">
 			<div class="col-sm-15">
 				<form method="POST" class="form-vertical  js-form-loading">
@@ -30,10 +51,10 @@
 						<!-- <input class="list-group-item" th:placeholder="|Tipo: ${evento.tipo.descricao}|"></input>-->
 					</ul>
 					<div class="btn-group col-sm-9">
-						<button class="btn  btn-default btn-xs">
+						<a href="#" class="btn  btn-default btn-xs" onclick="enableEdicao('formedicao', 'formexibicao'); return false;">
 							Editar
-						</button>									
-						<a th:href="@{/agenda/excluir/{codigo}(codigo=${evento.idevento})}" class="btn  btn-default btn-xs" type="submit">
+						</a>									
+						<a id="botaoexcluir" th:href="@{/agenda/excluir/{codigo}(codigo=${evento.idevento})}" class="btn  btn-default btn-xs" type="submit">
 							Excluir
 						</a>
 					</div>
@@ -41,6 +62,49 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Form de edição do evento -->
+	<div id="formedicao" class="container-fluid" style="display: none;">
+		<div class="rol">
+			<div class="col-sm-15">
+				<form method="POST" class="form-vertical  js-form-loading">
+					<ul class="list-group">
+						<input class="list-group-item" th:placeholder="${evento.titulo}"></input>
+						<input class="list-group-item" th:placeholder="${evento.descricao}"></input>
+						<input class="list-group-item"  th:placeholder="${evento.data.toLocaleString()}"></input>
+						<input class="list-group-item"  th:placeholder="${evento.horaevento}"></input>
+						<input class="list-group-item" th:placeholder="${evento.localevento}"></input>
+						<input class="list-group-item" th:placeholder="${evento.tipo.descricao}"></input>
+					</ul>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="tipo">Tipo</label>						
+							<select id="tipo" name="tipo">
+							   <option value="">Selecione um novo tipo...</option>
+							   <option value="COMPROMISSO">Compromisso</option>
+							   <option value="REUNIAO">Reunião</option>
+							   <option value="ENTREVISTA">Entrevista</option>
+							   <option value="FESTA">Festa</option>
+							   <option value="JANTAR">Jantar</option>
+							   <option value="LEMBRETE">Lembrete</option>
+							   <option value="ANIVERSARIO">Aniversário</option>
+							   <option value="CONFERENCIA">Conferência</option>
+							</select>
+						</div>
+					</div>
+					<div class="btn-group col-sm-9">
+						<a class="btn  btn-default btn-xs" type="submit">
+							Salvar
+						</a>									
+						<a id="botaoexcluir" th:href="@{/agenda}" class="btn  btn-default btn-xs">
+							Cancelar
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 </section>
 </body>
 </html>
