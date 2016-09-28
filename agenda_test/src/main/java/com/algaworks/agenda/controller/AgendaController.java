@@ -23,6 +23,7 @@ import com.algaworks.agenda.model.Usuario;
 import com.algaworks.agenda.repository.Eventos;
 import com.algaworks.agenda.service.CadastroEventoService;
 import com.algaworks.agenda.service.CadastroUsuarioService;
+import com.algaworks.agenda.service.EdicaoEventoService;
 import com.algaworks.agenda.service.ExcluirEventoService;
 
 @Controller
@@ -36,6 +37,9 @@ public class AgendaController {
 	
 	@Autowired
 	private ExcluirEventoService excluirEventoService;
+	
+	@Autowired
+	private EdicaoEventoService edicaoEventoService;
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo(Evento evento) {
@@ -193,6 +197,12 @@ public class AgendaController {
 		excluirEventoService.excluir(codigo);
 		
 		return new ModelAndView("redirect:/agenda/consulta");
+	}
+	
+	@RequestMapping(value = "/{codigo}", method = RequestMethod.POST)
+	public ModelAndView editarEvento(Evento evento){
+		edicaoEventoService.editar(evento);
+		return new ModelAndView("redirect:/agenda/{codigo}");
 	}
 		
 	@RequestMapping("/login")

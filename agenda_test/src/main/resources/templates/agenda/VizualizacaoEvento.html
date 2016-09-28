@@ -67,19 +67,19 @@
 	<div id="formedicao" class="container-fluid" style="display: none;">
 		<div class="rol">
 			<div class="col-sm-15">
-				<form method="POST" class="form-vertical  js-form-loading">
+				<form method="POST" th:object="${evento}" class="form-vertical  js-form-loading">
 					<ul class="list-group">
-						<input class="list-group-item" th:placeholder="${evento.titulo}"></input>
-						<input class="list-group-item" th:placeholder="${evento.descricao}"></input>
-						<input class="list-group-item"  th:placeholder="${evento.data.toLocaleString()}"></input>
-						<input class="list-group-item"  th:placeholder="${evento.horaevento}"></input>
-						<input class="list-group-item" th:placeholder="${evento.localevento}"></input>
-						<input class="list-group-item" th:placeholder="${evento.tipo.descricao}"></input>
+						<input class="list-group-item" th:field="*{idevento}" style="display: none;"></input>
+						<input class="list-group-item" th:field="*{titulo}"></input>
+						<input class="list-group-item" th:field="*{descricao}"></input>
+						<input class="list-group-item" th:placeholder="${evento.data.toLocaleString()}" ></input>
+						<input class="list-group-item" th:field="*{horaevento}"></input>
+						<input class="list-group-item" th:field="*{localevento}"></input>
 					</ul>
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label for="tipo">Tipo</label>						
-							<select id="tipo" name="tipo">
+							<select id="tipo" name="tipo" th:field="*{tipo}">
 							   <option value="">Selecione um novo tipo...</option>
 							   <option value="COMPROMISSO">Compromisso</option>
 							   <option value="REUNIAO">Reunião</option>
@@ -92,11 +92,11 @@
 							</select>
 						</div>
 					</div>
-					<div class="btn-group col-sm-9">
-						<a class="btn  btn-default btn-xs" type="submit">
+					<div class="form-group">
+						<button  class="btn  btn-primary" type="submit">
 							Salvar
-						</a>									
-						<a id="botaoexcluir" th:href="@{/agenda}" class="btn  btn-default btn-xs">
+						</button>									
+						<a th:href="@{/agenda}" class="btn  btn-default btn-xs">
 							Cancelar
 						</a>
 					</div>
