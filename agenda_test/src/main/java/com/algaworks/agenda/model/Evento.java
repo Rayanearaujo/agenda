@@ -1,6 +1,8 @@
 package com.algaworks.agenda.model;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -80,11 +82,24 @@ public class Evento {
 		this.descricao = descricao;
 	}
 
+	public String getDia() {
+		//String.format("%02d/%02m/%04y", data.getDay(), data.getMonth(), data.getYear());
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		return format.format(data);
+
+	}
+	
 	public Date getData() {
 		return data;
+
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		this.data = (Date) format.parse(data);
+	}
+	
+	public void setData(Date data){
 		this.data = data;
 	}
 

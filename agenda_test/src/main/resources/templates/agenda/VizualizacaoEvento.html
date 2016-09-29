@@ -44,7 +44,7 @@
 				<form method="POST" class="form-vertical  js-form-loading">
 					<ul class="list-group">
 						<li class="list-group-item" th:text="|Descrição: ${evento.descricao}|"></li>
-						<li id="data" class="list-group-item" th:text="|Data: ${evento.data.toLocaleString()}|"></li>
+						<li id="data" class="list-group-item" th:text="|Data: ${evento.dia}|"></li>
 						<li class="list-group-item" th:text="|Hora: ${evento.horaevento}|"></li>
 						<li class="list-group-item" th:text="|Local: ${evento.localevento}|"></li>
 						<li class="list-group-item" th:text="|Tipo: ${evento.tipo.descricao}|"></li>
@@ -72,7 +72,7 @@
 						<input class="list-group-item" th:field="*{idevento}" style="display: none;"></input>
 						<input class="list-group-item" th:field="*{titulo}"></input>
 						<input class="list-group-item" th:field="*{descricao}"></input>
-						<input class="list-group-item" th:placeholder="${evento.data.toLocaleString()}" ></input>
+						<input class="list-group-item" th:field="*{dia}" ></input>
 						<input class="list-group-item" th:field="*{horaevento}"></input>
 						<input class="list-group-item" th:field="*{localevento}"></input>
 					</ul>
