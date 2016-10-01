@@ -41,7 +41,8 @@
 	<script th:src="@{/layout/javascripts/jquery-ui-datepicker.min.js}"></script>
 	<script th:inline="javascript">
 		//<![CDATA[
-		           
+		
+        //Cria um array de eventos(recebidos do controlador)		           
 		var eventos = [[${eventos}]];
 	        
 		// An array of dates
@@ -60,6 +61,7 @@
 				dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 				dateFormat: "dd-mm-yy",
 				
+				//Trocar cor de datas com evento(s)
 				beforeShowDay: function(date) {
 			        var highlight = eventDates[date];
 			        if (highlight) {
@@ -69,13 +71,16 @@
 			        }
 			     },
 			
+			    //Mostrar informacoes dos eventos da data selecionada 
 				onSelect: function(){
 		        	var selected = $(this).val();
 		        	$('#teste').empty();
 		        	$('#tabela').empty();
 
+		        	//Anda pelo array de eventos
 					for (i = 0; i < eventos.length; i++) {		
 						
+						//Formata a data para comparar com a data selecionada no datepicker
 						var d = eventos[i].data;
 						d =  d.slice(0, 10).split('-');
 						d = d[2] +'-'+ d[1] +'-'+ d[0];
@@ -87,11 +92,15 @@
 							$('#tabela').prepend(thead);
 									
 							var tds = $('<tr>');
-							tds.append($('<td>').text(eventos[i].titulo));
+							var a = $('<td>');
+							//Inserir link para pagina de visualizacao do evento selecionado
+							a.append($('<a>').attr("href", "http://localhost:8080/agenda/" + eventos[i].idevento).text(eventos[i].titulo));
+							tds.append(a);
 							tds.append($('<td>').text(eventos[i].horaevento));
 							/*tds.append($('<td>').text(eventos[i].descricao));
 							tds.append($('<td>').text(eventos[i].data));
 							tds.append($('<td>').text(eventos[i].tipo.descricao));*/
+
 							$('#teste').prepend(tds);
 						}
 					}
