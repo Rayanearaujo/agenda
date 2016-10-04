@@ -85,6 +85,9 @@
 						d =  d.slice(0, 10).split('-');
 						d = d[2] +'-'+ d[1] +'-'+ d[0];
 						
+						//Formatar hora
+						var hora = (new Date(eventos[i].horaevento.toString())).toLocaleTimeString();
+						
 						if (selected == d){
 							var thead = $('<tr>');
 							thead.append($('<th>').text('Titulo'));
@@ -96,7 +99,7 @@
 							//Inserir link para pagina de visualizacao do evento selecionado
 							a.append($('<a>').attr("href", "http://localhost:8080/agenda/" + eventos[i].idevento).text(eventos[i].titulo));
 							tds.append(a);
-							tds.append($('<td>').text(eventos[i].horaevento));
+							tds.append($('<td>').text(hora));
 							/*tds.append($('<td>').text(eventos[i].descricao));
 							tds.append($('<td>').text(eventos[i].data));
 							tds.append($('<td>').text(eventos[i].tipo.descricao));*/
