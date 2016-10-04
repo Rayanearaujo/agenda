@@ -89,6 +89,11 @@ public class Evento {
 
 	}
 	
+	public void setDia(String data) throws ParseException {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		this.data = (Date) format.parse(data);
+	}
+	
 	public Date getData() {
 		return data;
 

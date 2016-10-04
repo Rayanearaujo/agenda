@@ -30,7 +30,7 @@ public class EdicaoEventoService {
 		System.out.println("Data oldEvent " + 
 				oldEvent.getData());
 		
-		evento.setData(oldEvent.getData());
+		evento.setData(evento.getData());
 		
 		this.eventos.save(evento);
 	}
