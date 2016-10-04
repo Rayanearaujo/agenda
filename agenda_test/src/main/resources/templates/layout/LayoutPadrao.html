@@ -65,7 +65,7 @@
 	        <ul class="dropdown-menu">
 	          <li>
 	            <div class="aw-logged-user">
-	              <img src="https://api.adorable.io/avatars/80/joaodascouves" 
+	              <img th:src="@{/layout/images/user.png}"
 	                width="80" height="80" th:alt="${#authentication.name}" class="aw-logged-user__picture" />
 	              <span class="aw-logged-user__name" th:text="${#authentication.name}"></span>
 	            </div>
