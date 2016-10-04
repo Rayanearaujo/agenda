@@ -200,7 +200,7 @@ public class AgendaController {
 	}
 	
 	@RequestMapping(value = "/{codigo}", method = RequestMethod.POST)
-	public ModelAndView editarEvento(Evento evento){
+	public ModelAndView editarEvento(@Valid Evento evento, BindingResult bindingResult){
 		edicaoEventoService.editar(evento);
 		return new ModelAndView("redirect:/agenda/{codigo}");
 	}
